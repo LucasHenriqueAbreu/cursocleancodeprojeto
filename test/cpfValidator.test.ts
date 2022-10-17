@@ -1,4 +1,4 @@
-import Cpf from "../src/before/CpfValidator";
+import Cpf from "../src/v2/CpfValidator";
 
 describe('CpfValidator tests', () => {
   it('Deve retornar verdairo para um CPF válido mesmo sem formatação.', () => {
