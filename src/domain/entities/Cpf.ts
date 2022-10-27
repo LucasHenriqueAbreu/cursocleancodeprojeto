@@ -23,10 +23,7 @@ export default class Cpf {
   private get _getCleanCpf(): string {
     if (!this._cleanCpf) {
       this._cleanCpf = this._value
-        .replace('.', '')
-        .replace('.', '')
-        .replace('-', '')
-        .replace(" ", "");
+        .replace(/\D/g, '');
     }
     return this._cleanCpf;
   }
