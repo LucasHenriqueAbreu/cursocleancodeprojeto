@@ -5,7 +5,7 @@ interface SplitCPf {
   secondCheckerDigit: string,
 }
 
-export default class Cpf {
+class Cpf {
   private _value: string;
   private _cleanCpf?: string;
   private _splitCpf?: SplitCPf;
@@ -84,3 +84,5 @@ export default class Cpf {
   }
 
 }
+
+export default Cpf;

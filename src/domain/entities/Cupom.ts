@@ -1,4 +1,4 @@
-export default class Coupom {
+class Coupom {
   constructor(
     readonly name: string, 
     readonly percent: number,
@@ -9,3 +9,5 @@ export default class Coupom {
     return (value * this.percent) / 100;
   }
 }
+
+export default Coupom;

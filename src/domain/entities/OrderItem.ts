@@ -1,4 +1,4 @@
-export default class OrderItem {
+class OrderItem {
   constructor(
     readonly idItem: number,
     readonly amount: number,
@@ -13,3 +13,5 @@ export default class OrderItem {
     return this.amount * this.value;
   }
 }
+
+export default OrderItem;

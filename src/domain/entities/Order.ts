@@ -2,7 +2,7 @@ import Cpf from './Cpf';
 import Coupom from './Cupom';
 import OrderItem from './OrderItem';
 
-export default class Order {
+class Order {
   private readonly cpf: Cpf;
   private orderItens: OrderItem[] = [];
   private cupom?: Coupom;
@@ -35,5 +35,6 @@ export default class Order {
   private itemAlreadyExists(orderItem: OrderItem): boolean {
     return this.orderItens.some((orderItemAtTheTime: OrderItem) => orderItemAtTheTime.idItem === orderItem.idItem);
   }
-
 }
+
+export default Order;
