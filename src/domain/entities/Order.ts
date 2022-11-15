@@ -11,8 +11,11 @@ export default class Order {
     this.cpf = new Cpf(cpf);
   }
 
-  public addItem(item: OrderItem): void {
-    this.orderItens.push(item);
+  public addItem(orderItem: OrderItem): void {
+    if (this.itemAlreadyExists(orderItem)) {
+      throw new Error('Item already exists in the order');
+    }
+    this.orderItens.push(orderItem);
   }
 
   public addCoupom(cupom: Coupom): void {
@@ -27,6 +30,10 @@ export default class Order {
       (previousValue: number, currentValue: OrderItem) => previousValue + currentValue.total,
       0);
     return this.cupom ? total - this.cupom.getDiscount(total) : total;
+  }
+
+  private itemAlreadyExists(orderItem: OrderItem): boolean {
+    return this.orderItens.some((orderItemAtTheTime: OrderItem) => orderItemAtTheTime.idItem === orderItem.idItem);
   }
 
 }
