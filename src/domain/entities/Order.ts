@@ -1,14 +1,21 @@
 import Cpf from './Cpf';
 import Coupom from './Cupom';
+import Dimension from './Dimension';
 import OrderItem from './OrderItem';
 
 class Order {
   private readonly cpf: Cpf;
+  private static readonly distance: number = 1000; // TODO: vai mudar depois
   private orderItens: OrderItem[] = [];
   private cupom?: Coupom;
 
-  constructor(cpf: string) {
+  constructor(cpf: string, readonly dimension: Dimension) {
     this.cpf = new Cpf(cpf);
+  }
+
+  get freight(): number {
+    const value = Order.distance * this.dimension.volume * (this.dimension.density / 100);
+    return value >= 10 ? value : 10;
   }
 
   public addItem(orderItem: OrderItem): void {
