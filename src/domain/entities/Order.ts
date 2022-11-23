@@ -1,5 +1,6 @@
 import Cpf from './Cpf';
 import Coupom from './Cupom';
+import Item from './Item';
 import OrderCode from './OderCode';
 import OrderItem from './OrderItem';
 
@@ -14,16 +15,19 @@ class Order {
     this._code = new OrderCode(date, sequence);
   }
 
+  get cpf(): string {
+    return this._cpf.value;
+  }
+
   get code(): string {
     return this._code.value;
   }
 
-  // TODO: talvez deva mudar para um item e a quantidade, a classe não precisa saber como construiir um order item
-  public addItem(orderItem: OrderItem): void {
-    if (this.itemAlreadyExists(orderItem)) {
+  public addItem(item: Item, quantity: number): void {
+    if (this.itemAlreadyExists(item.id)) {
       throw new Error('Item already exists in the order');
     }
-    this._orderItens.push(orderItem);
+    this._orderItens.push(new OrderItem(item.id, quantity, item.value));
   }
 
   public addCoupom(cupom: Coupom): void {
@@ -40,8 +44,8 @@ class Order {
     return this._cupom ? total - this._cupom.getDiscount(total) : total;
   }
 
-  private itemAlreadyExists(orderItem: OrderItem): boolean {
-    return this._orderItens.some((orderItemAtTheTime: OrderItem) => orderItemAtTheTime.idItem === orderItem.idItem);
+  private itemAlreadyExists(idItem: number): boolean {
+    return this._orderItens.some((orderItemAtTheTime: OrderItem) => orderItemAtTheTime.idItem === idItem);
   }
 }
 

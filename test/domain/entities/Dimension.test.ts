@@ -1,4 +1,4 @@
-import Dimension from '../src/domain/entities/Dimension';
+import Dimension from '../../../src/domain/entities/Dimension';
 
 describe('Testes para endidade Dimension', () => {
   describe('Testes de criação', () => {

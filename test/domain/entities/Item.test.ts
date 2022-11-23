@@ -1,5 +1,6 @@
-import Dimension from '../src/domain/entities/Dimension';
-import Item from '../src/domain/entities/Item';
+import Dimension from "../../../src/domain/entities/Dimension";
+import Item from "../../../src/domain/entities/Item";
+
 
 describe('Testes para endidade Item', () => {
   it('Deve criar uma instância de Item', () => {

@@ -1,4 +1,5 @@
-import OrderItem from "../src/domain/entities/OrderItem";
+import OrderItem from '../../../src/domain/entities/OrderItem';
+
 
 describe('Tests para entidade Order Item', () => {
   it('Deve criar uma instância de OrderItem', () => {

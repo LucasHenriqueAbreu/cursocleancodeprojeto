@@ -1,4 +1,4 @@
-import Coupom from "../src/domain/entities/Cupom";
+import Coupom from '../../../src/domain/entities/Cupom';
 
 describe('Testes para endidade Cupom', () => {
   it('Deve criar uma instância de Cupom', () => {

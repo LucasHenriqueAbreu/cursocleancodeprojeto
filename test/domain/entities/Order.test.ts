@@ -1,8 +1,8 @@
-import Coupom from "../src/domain/entities/Cupom";
-import Dimension from "../src/domain/entities/Dimension";
-import Item from "../src/domain/entities/Item";
-import Order from "../src/domain/entities/Order";
-import OrderItem from "../src/domain/entities/OrderItem";
+import Coupom from '../../../src/domain/entities/Cupom';
+import Dimension from '../../../src/domain/entities/Dimension';
+import Item from '../../../src/domain/entities/Item';
+import Order from '../../../src/domain/entities/Order';
+import OrderItem from '../../../src/domain/entities/OrderItem';
 
 describe('Tests para endidade Order (Pedido)', () => {
   const item1 = new Item(1, 'Farinha', 10, new Dimension(20, 15, 10, 1));
@@ -36,17 +36,17 @@ describe('Tests para endidade Order (Pedido)', () => {
 
   it('Deve criar um pedido com 3 itens (com descrição, preço e quantidade)', () => {
     const order = new Order('355.446.340-09');
-    order.addItem(new OrderItem(item1.id, item1.value, 2));
-    order.addItem(new OrderItem(item2.id, item2.value, 2));
-    order.addItem(new OrderItem(item3.id, item3.value, 2));
+    order.addItem(item1, 2);
+    order.addItem(item2, 2);
+    order.addItem(item3, 2);
     expect(order.getTotal()).toEqual(60);
   });
 
   it('Deve criar um pedido com cupom de desconto (percentual sobre o total do pedido)', () => {
     const order = new Order('355.446.340-09');
-    order.addItem(new OrderItem(item1.id, item1.value, 2));
-    order.addItem(new OrderItem(item2.id, item2.value, 2));
-    order.addItem(new OrderItem(item3.id, item3.value, 2));
+    order.addItem(item1, 2);
+    order.addItem(item2, 2);
+    order.addItem(item3, 2);
 
     order.addCoupom(new Coupom('VALOR20', 20, new Date()))
 
@@ -55,9 +55,9 @@ describe('Tests para endidade Order (Pedido)', () => {
 
   it('Não deve aplicar cupom de desconto expirado', () => {
     const order = new Order('355.446.340-09');
-    order.addItem(new OrderItem(item1.id, item1.value, 2));
-    order.addItem(new OrderItem(item2.id, item2.value, 2));
-    order.addItem(new OrderItem(item3.id, item3.value, 2));
+    order.addItem(item1, 2);
+    order.addItem(item2, 2);
+    order.addItem(item3, 2);
     const today = new Date();
     today.setDate(today.getDate() - 1);
     const yesterday = today;
@@ -66,13 +66,13 @@ describe('Tests para endidade Order (Pedido)', () => {
 
   it('Não deve ser possível informar um item mais de uma vez, ao fazer um pedido', () => {
     const order = new Order('355.446.340-09');
-    order.addItem(new OrderItem(item1.id, item1.value, 2));
-    expect(() => order.addItem(new OrderItem(item1.id, item1.value, 2))).toThrow(new Error('Item already exists in the order'));
+    order.addItem(item1, 2);
+    expect(() => order.addItem(item1, 2)).toThrow(new Error('Item already exists in the order'));
   });
 
-  test("Deve criar um pedido com código", function () {
-    const order = new Order("317.153.361-86", new Date("2022-03-01T10:00:00"), 1);
-    order.addItem(new OrderItem(item1.id, item1.value, 2));
+  test('Deve criar um pedido com código', function () {
+    const order = new Order('317.153.361-86', new Date("2022-03-01T10:00:00"), 1);
+    order.addItem(item1, 2);
     expect(order.code).toBe("202200000001");
   });
 });

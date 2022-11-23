@@ -20,6 +20,10 @@ class Cpf {
     }
   }
 
+  get value(): string {
+    return this._value;
+  }
+
   private get _getCleanCpf(): string {
     if (!this._cleanCpf) {
       this._cleanCpf = this._value
